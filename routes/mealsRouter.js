@@ -10,7 +10,7 @@ const cors = require('./cors');
 mealsRouter.route('/')
     .options(cors.corsWithOptions, (req, res) => { res.sendStatus(200); })
     .get(cors.cors, authenticate.verifyUser, (req, res, next) => {
-        Meals.findOne({ hostel: req.user.hostel })
+        Meals.find({ hostel: req.user.hostel })
             .then((meals) => {
                 res.statusCode = 200;
                 res.setHeader('Content-Type', 'application/json')
